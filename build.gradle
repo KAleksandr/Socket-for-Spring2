@@ -1,0 +1,49 @@
+buildscript {
+	ext {
+		springBootVersion = '1.5.2.RELEASE'
+	}
+
+	repositories {
+		mavenLocal()
+		mavenCentral()
+	}
+	dependencies {
+		classpath("org.springframework.boot:spring-boot-gradle-plugin:${springBootVersion}")
+	}
+}
+
+
+apply plugin: 'java'
+apply plugin: 'eclipse'
+apply plugin: 'org.springframework.boot'
+
+sourceCompatibility = 1.8
+targetCompatibility = 1.8
+
+jar {
+	baseName = 'spring-boot-sample-jelastic'
+	version =  '1.0.0'
+}
+
+repositories {
+	mavenLocal()
+	mavenCentral()
+
+}
+
+dependencies {
+	compile("org.springframework.boot:spring-boot-starter-thymeleaf")
+	compile("org.hibernate:hibernate-validator")
+	compile("org.springframework.boot:spring-boot-starter")
+	compile("org.springframework.boot:spring-boot-starter-actuator")
+	compile 'org.jolokia:jolokia-core'
+	testCompile("org.springframework.boot:spring-boot-starter-test")
+	// https://mvnrepository.com/artifact/org.springframework.boot/spring-boot-starter-websocket
+	compile group: 'org.springframework.boot', name: 'spring-boot-starter-websocket', version: '1.5.14.RELEASE'
+
+}
+
+
+task wrapper(type: Wrapper) {
+	gradleVersion = '3.4.1'
+}
